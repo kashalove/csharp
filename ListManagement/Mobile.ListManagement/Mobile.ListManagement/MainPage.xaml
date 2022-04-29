@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.ListManagement.MainPage">
+
+    <StackLayout>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <SearchBar Grid.Column="0" Text="{Binding Query, Mode=TwoWay}"></SearchBar>
+            <Label Text="Complete" Grid.Column="1">
+                <Label.Margin>
+                    <Thickness Left="0" Top="13" Right="3" Bottom="0"></Thickness>
+                </Label.Margin>
+            </Label>
+            <CheckBox Grid.Column="2" IsChecked="{Binding ShowComplete, Mode=TwoWay}"></CheckBox>
+        </Grid>
+
+        <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding Name}"></Label>
+                                <Label Grid.Column="1" IsVisible="{Binding IsToDo}" Text="{Binding DeadlineDisplay}"></Label>
+                            </Grid>
+
+                            <Label Text="{Binding Description}"></Label>
+                            
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Text="Add" Grid.Column="0" Clicked="Add_Clicked"></Button>
+            <Button Text="Edit" Grid.Column="1" Clicked="Edit_Clicked"></Button>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Text="Save" Grid.Column="0" Clicked="Save_Clicked"></Button>
+            <Button Text="Load" Grid.Column="1"></Button>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>
